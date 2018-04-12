@@ -155,11 +155,15 @@ Identifies possible interfaces
 
 - **golint**
 
-"can be annoying to use" - (**golint**, 2018)
+"can be annoying to use" - _(golint, 2018)_
 
 - Although golint considers that it may be annoying, it can be considered acceptable.
 
 ---
 
-- **lll** in test files  
+- **lll** _(in test files)_  
 Some test files need long lines for test cases
+
+---
+
+# WOOOOOOOH
