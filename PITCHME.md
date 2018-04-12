@@ -88,7 +88,8 @@ Calculate cyclomatic complexities of functions and methods.
 - **goimports**  
 Ensures that code adheres to go formatting standards. `goimports` implements `gofmt` and checks that the `import` block is formatted correctly. 
 - **golint**  
-Ensures that code is in a certain style. Although `golint` is considered opinionated, the errors that were brought up across our codebase we considered valid errors, apart from the message about returning unexported types.
+Ensures that code is in a certain style.  
+Considered opinionated, however the errors reported were considered valid errors, apart from one.
 
 ---
 
@@ -104,7 +105,7 @@ Detects assignments to variables that are ineffective.
 - **staticcheck**  
 Identifies code for incorrectness that would not be picked up by a compiler.
 - **structcheck**  
-Finds unused fields in structs. `structcheck` will not report unused exported fields as these can be in place for use by other packages.
+Finds unused, unexported fields in structs.
 - **unconvert**  
 Reports redundant type conversions.
 
@@ -118,26 +119,43 @@ Reports unused global variables and constants.
 ---
 
 ### Excluded linters
-The following is a list of linters that are excluded from our checks. These can be useful in identifying possible issues with our code but we cannot rely on every single message that is output by them, they can be too opinionated.  
+Useful to run locally, but didn't make the cut.
 
-It is still recommended to run the following linters locally when developing:
+---
+
 - **vetshadow**  
-There is no clear decision around whether we consider shadowing variables to be bad practise or not. Vet shadow identifies variables that may have been unintentionally shadowed. If we want to include this linter at a later date, we can make a decision then.
+Vet shadow identifies variables that may have been unintentionally shadowed.
 - **dupl**  
-A go proverb states that '[a] little duplication is better than a little dependency'. Design issues around duplication should be picked up by authors and reviewers, rather than depending on this tool. 
+'[a] little duplication is better than a little dependency'.  
+Duplication issues should be picked up by authors and reviewers. 
+
+---
+
 - **megacheck**  
 Does some quite opinionated checks for bugs. It is useful but shouldn't be used as a hard fail.
 - **gofmt**  
-Redundant because of goimports
+💯% redundant because of goimports
+
+---
+
 - **goconst**  
-It may not always be appropriate to call the result from goconst an error. Sometimes it can be appropriate to hardcode the same string in multiple places.
+Too opinionated; it can be appropriate to hardcode the same string in multiple places.
 - **interfacer**  
-Should not be forced but it a good one to run localy
+Identifies possible interfaces
 
 ---
 
 ### Excluded Messages
-- **golint**  
-When an unexported struct is returned from an exported function or method, `golint` complains that it "can be annoying to use". Although golint considers that it may be annoying, we have chosen that this is acceptable.
-- **lll**  
-We ignore `lll` results that are in test files. For a lot of our test files, we have lines that are longer than 120 characters long. It is acceptable that for some test cases to have lines longer than this length due to things such as urls that are hardcoded test cases
+
+---
+
+- **golint**
+
+"can be annoying to use" - (**golint**, 2018)
+
+- Although golint considers that it may be annoying, it can be considered acceptable.
+
+---
+
+- **lll** in test files  
+Some test files need long lines for test cases
