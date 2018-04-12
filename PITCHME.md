@@ -40,7 +40,6 @@ To choose linters:
 ### Generated files
 Many generated files reported errors.  
 
-Proposal:
 - Standardise use of generators
 - Only use trusted generators
 - Don't lint generated files
@@ -62,38 +61,55 @@ Agree to always use `.pb.go` as the generated file extension.
 ---
 
 ### Test files
-Test files are extremely important. We include test files in our linting and checking to ensure the quality and reliability of our tests.
+Tests are important. 
+
+- We include test files in linting to increase quality of our tests.
 
 ---
 
 ### Linter overlap
-Some of the linters may actually give duplicated output, we have decided that this should be fine. If it turns out to be really annoying then we can revert this decision later.
+Accept linter overlap.
 
 ---
 
 ### Enabled Linters
+
+---
+
 - **deadcode**  
 Detects unused declarations.
 - **errcheck**  
 Ensures that returned errors are checked.
 - **gocyclo**  
 Calculate cyclomatic complexities of functions and methods.
+
+---
+
 - **goimports**  
-Ensures that code adheres to go formatting standards. `goimports` implements `gofmt` and checks that the `import` block is formatted correctly. When `goimports` is ran as part of `gometalinter`, no changes are made to the code.
+Ensures that code adheres to go formatting standards. `goimports` implements `gofmt` and checks that the `import` block is formatted correctly. 
 - **golint**  
-Ensures that code is in a certain style. Although `golint` is considered opinionated, the errors that were brought up across our codebase we considered valid errors, apart from the message about returning unexported types, _see below_.
+Ensures that code is in a certain style. Although `golint` is considered opinionated, the errors that were brought up across our codebase we considered valid errors, apart from the message about returning unexported types.
+
+---
+
 - **lll**  
 A line length linter that ensures line length is less than a configurable value.
 - **vet**  
 Examines code and reports suspicious constructs.
 - **ineffassign**  
 Detects assignments to variables that are ineffective.
+
+---
+
 - **staticcheck**  
 Identifies code for incorrectness that would not be picked up by a compiler.
 - **structcheck**  
 Finds unused fields in structs. `structcheck` will not report unused exported fields as these can be in place for use by other packages.
 - **unconvert**  
 Reports redundant type conversions.
+
+---
+
 - **unused**  
 Reports unused variables.
 - **varcheck**  
