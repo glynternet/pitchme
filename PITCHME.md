@@ -15,7 +15,6 @@ To choose linters:
 - A BASH script (😱) was used to go over each go-based repository and :
 	- check out the develop branch;
 	- execute the gometalinter over the codebase.
-- A single file was output for each script run, containing results for all repositories.
 
 ---
 
@@ -40,6 +39,7 @@ To choose linters:
 
 ### Generated files
 Many generated files reported errors.  
+
 Proposal:
 - Standardise use of generators
 - Only use trusted generators
@@ -48,16 +48,13 @@ Proposal:
 ---
 
 #### go-bindata
-Proposal:
-- Use default name of `bindata.go` for generated file
-
-- Not only will this allow us to ignore bindata files, it will also allow us to easily identify, as humans, which files are generated.
+- Use default name of `bindata.go` for generated file  
+Not only will this allow us to ignore bindata files, it will also allow us to easily identify, as humans, which files are generated.
 
 ---
 
 #### proto
-Proposal:
-- Agree to always use `.pb.go` as the generated file extension.
+Agree to always use `.pb.go` as the generated file extension.
 
 ---
 
