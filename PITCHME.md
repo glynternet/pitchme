@@ -2,24 +2,32 @@
 
 ---
 
-### Requirements
-- Linters must not alter any of the codebase, they must only report whether the code meets a certain criteria.
-- The developed linting tool should be able to be run easily locally in a development environment, as well as in a CI/CD situation.
-	- The tool should be able to be run on an uncommitted, unpushed, work in progress, it should not require that the codebase has a commit hash that could retrieve the codebase from a remote repository.
-- The tool should be produce exactly the same results when run on the same codebase, whether run locally or in a CI/CD environment.
+### How the linters were chosen
+To choose linters:
+- gometalinter was chosen as a base:
+	- providing an easy a way to execute linters;
+	- configurability;
+	- considered to be a useful tool within the go community.
+
+--- 
+
+- A BASH script (😱) was used to go over each go-based repository and :
+	- check out the develop branch;
+	- execute the gometalinter over the codebase.
+- A single file was output for each script run, containing results for all repositories.
 
 ---
 
-### How the linters were chosen
-To choose linters, the linters of the gometalinter were chosen as a base set, with the use of the gometalinter as a way to execute them because it provides easy configurability and is generally considered to be a useful tool within the go community.
-- A BASH script (😱) was used to go over each go-based repository, package or application, within one of our engineers' machines and:
-	- check out the develop branch. If there was no develop branch available, the development branch was used;
-	- executed the gometalinter over the codebase.
-- The output from all of the repositories of the gometalinter was output into a single file for each run.
-- The output was inspected for errors that appeared to be _too_ opinionated or were perhaps things that were not considered yet to be issues. On finding the first of these errors, either:
+- The output was inspected for:
+	- errors that appeared to be _too_ opinionated;
+	- things that were not considered to be issues. 
+- On finding the first of these errors, either:
 	- the linter reporting the error was disabled;
 	- the message type of the reported error was excluded from the reports using the gometalinter's `--exclude` feature;
 	- the code was changed to fit a standard that did not cause any errors (see Generated files section).
+
+---
+
 - The script was then run again, until all errors reported were agreed with.
 
 ---
