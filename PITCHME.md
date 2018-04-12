@@ -5,8 +5,9 @@
 ### How the linters were chosen
 To choose linters:
 - gometalinter was chosen as a base:
-	- providing an easy a way to execute linters;
-	- configurability;
+	- providing:
+		- easy execution;
+		- configurability;
 	- considered to be a useful tool within the go community.
 
 --- 
@@ -19,35 +20,44 @@ To choose linters:
 ---
 
 - The output was inspected for:
-	- errors that appeared to be _too_ opinionated;
+	- overly opintionated errors;
 	- things that were not considered to be issues. 
-- On finding the first of these errors, either:
-	- the linter reporting the error was disabled;
-	- the message type of the reported error was excluded from the reports using the gometalinter's `--exclude` feature;
-	- the code was changed to fit a standard that did not cause any errors (see Generated files section).
 
 ---
 
-- The script was then run again, until all errors reported were agreed with.
+- On finding the first of these errors, one of the following was executed:
+	- the linter reporting the error was disabled;
+	- the message type was excluded from the reports using the `--exclude` feature;
+	- the code was changed to fit a standard that did not cause any errors.
+
+---
+
+- repeat
+	- repeat
+		- repeat
 
 ---
 
 ### Generated files
-Many files that are auto-generated have lots of things brought up by linters, however, we should only be using generators that we trust the output of when we use them properly. If we can standardise the way we use generators, such as only outputting files called bindata.go for go-bindata, then we will be able to skip them in the checking process.
-
-There is a proposal, and some work done already, in go to identify generated files automatically and this feature will, no doubt, be integrated into many linters eventually. Until this feature becomes stable and available, we will have to use auto-generators in a standardised way; this is a good idea anyway.
+Many generated files reported errors.  
+Proposal:
+- Standardise use of generators
+- Only use trusted generators
+- Don't lint generated files
 
 ---
 
 #### go-bindata
-By using the default name of bindata.go for `go-bindata` we will be able to identify these files easily. From looking over our repositories in their current format, there seems to be no reason for us to rename the generated files anyway. Another benefit of using the default name is that we will need one less argument to the bindata command and they will stand out when an author is looking at the codebase.
+Proposal:
+- Use default name of `bindata.go` for generated file
+
+- Not only will this allow us to ignore bindata files, it will also allow us to easily identify, as humans, which files are generated.
 
 ---
 
 #### proto
-If we ensure that we always have .pb as the protofbuf extension and always us .pb.go as the generated file extension then we can ignore these files using when using linters.
-
-For example, where should the generated file go? By default, it goes in the working directory of where the command runs. Maybe this is actually where the generated files should be?
+Proposal:
+- Agree to always use `.pb.go` as the generated file extension.
 
 ---
 
