@@ -86,10 +86,14 @@ Calculate cyclomatic complexities of functions and methods.
 ---
 
 - **goimports**  
-Ensures that code adheres to go formatting standards. `goimports` implements `gofmt` and checks that the `import` block is formatted correctly. 
+Ensures code adheres to go formatting standards. 
+	- implements `gofmt`;
+	- checks `import` block formatting. 
 - **golint**  
 Ensures that code is in a certain style.  
-Considered opinionated, however the errors reported were considered valid errors, apart from one.
+	- Considered opinionated
+	- errors reported were considered valid errors
+		- except for one.
 
 ---
 
