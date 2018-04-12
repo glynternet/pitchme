@@ -48,8 +48,11 @@ Proposal:
 ---
 
 #### go-bindata
-- Use default name of `bindata.go` for generated file  
-Not only will this allow us to ignore bindata files, it will also allow us to easily identify, as humans, which files are generated.
+Use `bindata.go` for generated filename
+
+- This is default go-bindata behaviour  
+- Allows us to easily ignore bindata files
+- Easily human identifiable
 
 ---
 
