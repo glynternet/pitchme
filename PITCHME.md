@@ -97,7 +97,7 @@ Ensures that code is in a certain style.
 
 ---
 
-- **lll**  
+- **lll** (limit to 120 chars)
 A line length linter that ensures line length is less than a configurable value.
 - **vet**  
 Examines code and reports suspicious constructs.
